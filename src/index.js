@@ -13,19 +13,35 @@ class Node {
 class Tree {
     root;
 
-    buildTree(arr) {
-        //sort arr then turn into BST
-        //passing in empty helper arr for mergeSort
-        let helperArr = [];
-        sortPackage.topDownMergeSort(arr, helperArr, arr.length);
-        return arr;
-    }
-
     constructor(arr) {
         this.root = this.buildTree(arr);
     }
 
+    buildTree(arr) {
+        //sort arr then turn into BST
+        //passing in empty helper arr for mergeSort
+        let helperArr = [];
+        let len = arr.length;
 
+        sortPackage.topDownMergeSort(arr, helperArr, arr.length);
+        let rootNode = this.sortedArrToBST(arr, 0, len - 1);
+        console.log(arr);
+        console.log(rootNode);
+        return rootNode;
+    }
+
+    sortedArrToBST(arr, start, end) {
+        if (start > end) {
+            return null;
+        }
+
+        let mid = Math.floor((start + end) / 2);
+        let node = new Node(arr[mid]);
+        node.left = this.sortedArrToBST(arr, start, mid - 1);
+        node.right = this.sortedArrToBST(arr, mid + 1, end);
+
+        return node;
+    }
 }
 
 let sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];
