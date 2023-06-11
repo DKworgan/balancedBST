@@ -1,5 +1,6 @@
-import sortAlg from "./sort.js";
+//import sortAlg from "./sort.js";
 
+const sortPackage = require("./sort.js");
 class Node {
     data;
     left;
@@ -27,4 +28,6 @@ function buildTree(arr) {
 
 let sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];
 let emptyArr = [];
-sortAlg(sortMeArr, emptyArr, sortMeArr.length);
+
+sortPackage.topDownMergeSort(sortMeArr, emptyArr, sortMeArr.length);
+console.log(sortMeArr);

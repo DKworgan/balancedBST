@@ -28,15 +28,13 @@ function topDownMerge(arr1, iBegin, iMiddle, iEnd, arr2) {
             arr2[k] = arr1[i];
             i = i + 1;
         } else {
-            console.log("J " + j);
-            console.log(arr1[j]);
             arr2[k] = arr1[j];
             j = j + 1;
         }
     }
 }
 
-export default topDownMergeSort();
+export { topDownMergeSort };
 // example
 //let ranArr = [112, 123, 12, 31, 123, 141, 234, 1211, 2, 3];
 //let emptyArr = [];
