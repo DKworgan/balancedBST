@@ -15,7 +15,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("//import sortAlg from \"./sort.js\";\n\nconst sortPackage = __webpack_require__(/*! ./sort.js */ \"./src/sort.js\");\nclass Node {\n    data;\n    left;\n    right;\n\n    constructor(data, left = null, right = null) {\n        this.data = data;\n    }\n}\n\nclass Tree {\n    root;\n\n    constructor(arr) {\n        //root = buildTree(arr);\n    }\n}\n\nfunction buildTree(arr) {\n    //sort arr then turn into BST\n    //sortAlg();\n}\n\n\n\nlet sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];\nlet emptyArr = [];\nconsole.log(sortPackage);\nsortPackage.topDownMergeSort(sortMeArr, emptyArr, sortMeArr.length);\nconsole.log(sortMeArr);\n\n//# sourceURL=webpack://binarysearchtree/./src/index.js?");
+eval("const sortPackage = __webpack_require__(/*! ./sort.js */ \"./src/sort.js\");\n\nclass Node {\n    data;\n    left;\n    right;\n\n    constructor(data, left = null, right = null) {\n        this.data = data;\n    }\n}\n\nclass Tree {\n    root;\n\n    buildTree(arr) {\n        //sort arr then turn into BST\n        //passing in empty helper arr for mergeSort\n        let helperArr = [];\n        sortPackage.topDownMergeSort(arr, helperArr, arr.length);\n        return arr;\n    }\n\n    constructor(arr) {\n        this.root = this.buildTree(arr);\n        console.log(this.root);\n    }\n\n\n}\n\nlet sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];\n\nlet bst = new Tree(sortMeArr);\n/*\nlet emptyArr = [];\nsortPackage.topDownMergeSort(sortMeArr, emptyArr, sortMeArr.length);\nconsole.log(sortMeArr);\n*/\n\n//# sourceURL=webpack://binarysearchtree/./src/index.js?");
 
 /***/ }),
 
