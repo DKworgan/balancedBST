@@ -25,8 +25,7 @@ class Tree {
 
         sortPackage.topDownMergeSort(arr, helperArr, arr.length);
         let rootNode = this.sortedArrToBST(arr, 0, len - 1);
-        console.log(arr);
-        console.log(rootNode);
+
         return rootNode;
     }
 
@@ -47,8 +46,3 @@ class Tree {
 let sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];
 
 let bst = new Tree(sortMeArr);
-/*
-let emptyArr = [];
-sortPackage.topDownMergeSort(sortMeArr, emptyArr, sortMeArr.length);
-console.log(sortMeArr);
-*/

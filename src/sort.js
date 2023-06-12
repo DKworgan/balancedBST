@@ -34,8 +34,5 @@ function topDownMerge(arr1, iBegin, iMiddle, iEnd, arr2) {
     }
 }
 
+
 export { topDownMergeSort };
-// example
-//let ranArr = [112, 123, 12, 31, 123, 141, 234, 1211, 2, 3];
-//let emptyArr = [];
-//topDownMergeSort(ranArr, emptyArr, ranArr.length);
