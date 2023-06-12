@@ -7,6 +7,8 @@ class Node {
 
     constructor(data, left = null, right = null) {
         this.data = data;
+        this.left = left;
+        this.right = right;
     }
 }
 
@@ -41,8 +43,68 @@ class Tree {
 
         return node;
     }
+
+    insert(val) {
+        let tempBol = true;
+        let tempRoot = this.root;
+        let tempNode = new Node(val);
+        console.log("hi");
+
+        while (tempBol) {
+
+            //no need to insert to avoid duplication
+            if (tempRoot.data == val) {
+                return;
+            }
+
+            if (val > tempRoot.data) {
+                if (tempRoot.right != null) {
+                    tempRoot = tempRoot.right;
+                } else {
+                    tempRoot.right = tempNode;
+                    tempBol = false;
+
+                }
+
+            } else if (val < tempRoot.data) {
+                if (tempRoot.left != null) {
+                    tempRoot = tempRoot.left;
+                } else {
+                    tempRoot.left = tempNode;
+                    tempBol = false;
+                }
+            }
+
+        }
+        //console.log(tempNode);
+    }
+
+    delete() {
+
+    }
 }
+
+
+const prettyPrint = (node, prefix = "", isLeft = true) => {
+    if (node === null) {
+        return;
+    }
+    if (node.right !== null) {
+        prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+    }
+    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+    if (node.left !== null) {
+        prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+    }
+};
 
 let sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];
 
 let bst = new Tree(sortMeArr);
+
+/*
+
+TESTING PURPOSES
+bst.insert(50);
+prettyPrint(bst.root);
+*/
