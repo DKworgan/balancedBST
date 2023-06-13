@@ -138,11 +138,33 @@ class Tree {
         }
 
         // Copy Successor Data to root
-        root.key = succ.key;
+        root.data = succ.data;
 
         // Delete Successor and return root
         succ = null;
         return root;
+    }
+
+    find(val) {
+
+        if (this.root.data == val) {
+            return this.root;
+        }
+
+        let found = false;
+        let tempNode = this.root;
+        while (!found) {
+
+            if (this.root.data > val) {
+                tempNode = tempNode.left;
+            } else {
+                tempNode = tempNode.right;
+            }
+
+            if (tempNode.data == val) {
+                return tempNode;
+            }
+        }
     }
 }
 
@@ -165,10 +187,10 @@ let sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];
 
 let bst = new Tree(sortMeArr);
 
-bst.deleteNode(bst.root, 63);
+
 prettyPrint(bst.root);
-
-
+let findVal = bst.find(63);
+console.log(findVal);
 /*
 
 TESTING PURPOSES
