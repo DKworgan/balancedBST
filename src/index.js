@@ -166,6 +166,30 @@ class Tree {
             }
         }
     }
+
+
+    // traverses the tree using the breadth first method, and returns the nodes to the function
+    // passed into levelOrder.
+    levelOrder() {
+        let current;
+        let queue = [];
+        queue.push(this.root);
+
+        while (queue.length > 0) {
+            current = queue.shift();
+
+            if (current.left !== null) {
+                queue.push(current.left);
+            }
+            if (current.right !== null) {
+                queue.push(current.right);
+            }
+
+
+            console.log(current.data);
+        }
+
+    }
 }
 
 
@@ -189,8 +213,7 @@ let bst = new Tree(sortMeArr);
 
 
 prettyPrint(bst.root);
-let findVal = bst.find(63);
-console.log(findVal);
+bst.levelOrder();
 /*
 
 TESTING PURPOSES
