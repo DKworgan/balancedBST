@@ -197,7 +197,17 @@ class Tree {
         this.preOrder(node.right);
 
     }
+
+    inOrder(node) {
+        if (node == null) {
+            return;
+        }
+        this.inOrder(node.left);
+        console.log(node.data);
+        this.inOrder(node.right);
+    }
 }
+
 
 
 
@@ -220,7 +230,7 @@ let bst = new Tree(sortMeArr);
 
 
 prettyPrint(bst.root);
-bst.preOrder(bst.root);
+bst.inOrder(bst.root);
 /*
 
 TESTING PURPOSES
