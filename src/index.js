@@ -184,10 +184,17 @@ class Tree {
             if (current.right !== null) {
                 queue.push(current.right);
             }
-
-
             console.log(current.data);
         }
+    }
+
+    preOrder(node) {
+        if (node == null) {
+            return;
+        }
+        console.log(node.data);
+        this.preOrder(node.left);
+        this.preOrder(node.right);
 
     }
 }
@@ -213,7 +220,7 @@ let bst = new Tree(sortMeArr);
 
 
 prettyPrint(bst.root);
-bst.levelOrder();
+bst.preOrder(bst.root);
 /*
 
 TESTING PURPOSES
