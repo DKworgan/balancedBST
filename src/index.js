@@ -60,6 +60,7 @@ class Tree {
             if (val > tempRoot.data) {
                 if (tempRoot.right != null) {
                     tempRoot = tempRoot.right;
+
                 } else {
                     tempRoot.right = tempNode;
                     tempBol = false;
@@ -69,6 +70,7 @@ class Tree {
             } else if (val < tempRoot.data) {
                 if (tempRoot.left != null) {
                     tempRoot = tempRoot.left;
+
                 } else {
                     tempRoot.left = tempNode;
                     tempBol = false;
@@ -79,7 +81,32 @@ class Tree {
         //console.log(tempNode);
     }
 
-    delete() {
+    delete(val) {
+        let tempNode = this.root;
+        let tempBol = false;
+        let direction;
+
+        while (!tempBol) {
+            if (val == tempNode.left.data) {
+                tempBol = true;
+                direction = "left";
+                console.log(tempNode.left);
+                return;
+
+            } else if (val == tempNode.right.data) {
+                tempBol = true;
+                direction = "right";
+                console.log(tempNode.right);
+                return;
+            }
+
+            if (val < tempNode.data) {
+                tempNode = tempNode.left;
+
+            } else {
+                tempNode = tempNode.right;
+            }
+        }
 
     }
 }
@@ -101,7 +128,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 let sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];
 
 let bst = new Tree(sortMeArr);
-
+bst.delete(2);
 /*
 
 TESTING PURPOSES
