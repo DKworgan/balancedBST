@@ -80,36 +80,72 @@ class Tree {
         }
         //console.log(tempNode);
     }
+    /*
+        - if node has no children, make parent node's reference to it null.
+        - if node has 1 child, make parent node's reference be for the child.
+        - if node has 2 children, delete parent's node reference to it and insert both nodes using insert function.
+    */
+    deleteNode(root, k) {
 
-    delete(val) {
-        let tempNode = this.root;
-        let tempBol = false;
-        let direction;
+        if (root === null) {
+            return root;
+        }
 
-        while (!tempBol) {
-            if (val == tempNode.left.data) {
-                tempBol = true;
-                direction = "left";
-                console.log(tempNode.left);
-                return;
+        if (root.data > k) {
+            root.left = this.deleteNode(root.left, k);
+            console.log(root.data);
+            return root;
 
-            } else if (val == tempNode.right.data) {
-                tempBol = true;
-                direction = "right";
-                console.log(tempNode.right);
-                return;
-            }
+        } else if (root.data < k) {
+            root.right = this.deleteNode(root.right, k);
+            console.log(root.data);
+            return root;
+        }
 
-            if (val < tempNode.data) {
-                tempNode = tempNode.left;
 
-            } else {
-                tempNode = tempNode.right;
+
+        // If one of the children is empty
+        let succParent;
+        let succ;
+        if (root.left === null) {
+            let temp = root.right;
+            root = null;
+            return temp;
+
+        } else if (root.right === null) {
+            let temp = root.left;
+            root = null;
+            return temp;
+        }
+
+        // If both children exist
+
+        else {
+            succParent = root;
+
+            // Find successor
+            succ = root.right;
+            while (succ.left !== null) {
+                succParent = succ;
+                succ = succ.left;
             }
         }
 
+        if (succParent !== root) {
+            succParent.left = succ.right;
+        } else {
+            succParent.right = succ.right;
+        }
+
+        // Copy Successor Data to root
+        root.key = succ.key;
+
+        // Delete Successor and return root
+        succ = null;
+        return root;
     }
 }
+
 
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -128,7 +164,11 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 let sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];
 
 let bst = new Tree(sortMeArr);
-bst.delete(2);
+
+bst.deleteNode(bst.root, 63);
+prettyPrint(bst.root);
+
+
 /*
 
 TESTING PURPOSES
