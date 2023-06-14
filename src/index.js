@@ -48,7 +48,6 @@ class Tree {
         let tempBol = true;
         let tempRoot = this.root;
         let tempNode = new Node(val);
-        console.log("hi");
 
         while (tempBol) {
 
@@ -261,6 +260,22 @@ class Tree {
             return true;
         }
     }
+
+    //helper method for rebalance
+    inOrderArrOfTree(node, arr = []) {
+        if (node == null) {
+            return;
+        }
+        this.inOrderArrOfTree(node.left);
+        arr.push(node.data);
+        this.inOrderArrOfTree(node.right);
+    }
+
+    reBalance() {
+        let arrOfTree = [];
+        this.inOrderArrOfTree(this.root, arrOfTree);
+        this.buildTree(arrOfTree);
+    }
 }
 
 
@@ -282,9 +297,13 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 let sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];
 
 let bst = new Tree(sortMeArr);
-
+bst.insert(3);
+bst.insert(4);
+bst.insert(8);
+bst.levelOrder();
+bst.reBalance();
 prettyPrint(bst.root);
-console.log(bst.isBalanced());
+
 /*
 
 TESTING PURPOSES
