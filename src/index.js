@@ -240,6 +240,16 @@ class Tree {
 
         }
     }
+
+    height(node) {
+        if (node === null) {
+            return 0;
+        }
+        let leftHeight = this.height(node.left);
+        let rightHeight = this.height(node.right);
+
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
 }
 
 
@@ -259,10 +269,10 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 let sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];
 
 let bst = new Tree(sortMeArr);
-console.log(bst.height(1));
+
 
 prettyPrint(bst.root);
-
+console.log(bst.height(bst.root));
 /*
 
 TESTING PURPOSES
