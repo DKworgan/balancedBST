@@ -250,7 +250,20 @@ class Tree {
 
         return Math.max(leftHeight, rightHeight) + 1;
     }
+
+    isBalanced() {
+        let leftHeight = this.height(this.root.left);
+        let rightHeight = this.height(this.root.right);
+
+        if ((leftHeight - rightHeight) > 1 || (leftHeight - rightHeight) < -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
+
+
 
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -270,9 +283,8 @@ let sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];
 
 let bst = new Tree(sortMeArr);
 
-
 prettyPrint(bst.root);
-console.log(bst.height(bst.root));
+console.log(bst.isBalanced());
 /*
 
 TESTING PURPOSES
