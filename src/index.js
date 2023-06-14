@@ -215,9 +215,32 @@ class Tree {
         this.postOrder(node.right);
         console.log(node.data);
     }
+
+    depth(val) {
+        let tempNode = this.root;
+        let height = 0;
+        let found = false;
+
+        if (tempNode.data == val) {
+            return 0;
+        }
+
+        while (!found) {
+            if (tempNode.data > val) {
+                height++;
+                tempNode = tempNode.left;
+            } else {
+                height++;
+                tempNode = tempNode.right;
+            }
+
+            if (tempNode.data == val) {
+                return height;
+            }
+
+        }
+    }
 }
-
-
 
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -236,10 +259,10 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 let sortMeArr = [7, 2, 5, 11, 13, 57, 48, 63, 12, 1, 6, 4321];
 
 let bst = new Tree(sortMeArr);
-
+console.log(bst.height(1));
 
 prettyPrint(bst.root);
-bst.postOrder(bst.root);
+
 /*
 
 TESTING PURPOSES
