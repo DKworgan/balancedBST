@@ -278,9 +278,6 @@ class Tree {
     }
 }
 
-
-
-
 const prettyPrint = (node, prefix = "", isLeft = true) => {
     if (node === null) {
         return;
